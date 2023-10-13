@@ -12,6 +12,7 @@ import sys
 import time
 import csv
 import binascii
+from asyncio import sleep
 
 from .compat import to_char, str, bytes, StringIO, is_py3, OrderedDict
 
@@ -92,7 +93,7 @@ class retry(object):
                         # last chance
                         raise e
                 if self.delay > 0:
-                    time.sleep(self.delay)
+                    sleep(self.delay)
         wrapped_f.__doc__ = f.__doc__
         wrapped_f.__name__ = f.__name__
         wrapped_f.__module__ = f.__module__

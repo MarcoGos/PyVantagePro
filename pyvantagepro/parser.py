@@ -130,8 +130,8 @@ class LoopDataParserRevB(DataParser):
     # Loop data format (RevB)
     LOOP_FORMAT = (
         ('LOO', '3s'), ('BarTrend', 'B'), ('PacketType', 'B'),
-        ('NextRec', 'H'), ('Barometer', 'H'), ('TempIn', 'H'),
-        ('HumIn', 'B'), ('TempOut', 'H'), ('WindSpeed', 'B'),
+        ('NextRec', 'H'), ('Barometer', 'H'), ('TempIn', 'h'),
+        ('HumIn', 'B'), ('TempOut', 'h'), ('WindSpeed', 'B'),
         ('WindSpeed10Min', 'B'), ('WindDir', 'H'), ('ExtraTemps', '7s'),
         ('SoilTemps', '4s'), ('LeafTemps', '4s'), ('HumOut', 'B'),
         ('HumExtra', '7s'), ('RainRate', 'H'), ('UV', 'B'),
@@ -153,6 +153,7 @@ class LoopDataParserRevB(DataParser):
         self['TempOut'] = self['TempOut'] / 10
         self['RainRate'] = self['RainRate'] / 100
         self['RainStorm'] = self['RainStorm'] / 100
+        self['UV'] = self['UV'] / 10
         # Given a packed storm date field, unpack and return date
         self['StormStartDate'] = self.unpack_storm_date()
         # rain totals

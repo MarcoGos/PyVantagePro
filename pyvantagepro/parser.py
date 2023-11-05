@@ -292,7 +292,10 @@ class ArchiveDataParserRevB(DataParser):
         self['Barometer'] = self['Barometer'] / 1000
         self['TempIn'] = self['TempIn'] / 10
         self['UV'] = self['UV'] / 10
+        self['UVHi'] = self['UVHi'] / 10
         self['ETHour'] = self['ETHour'] / 1000
+        self['RainRate'] = self['RainRate'] / 100
+        self['RainRateHi'] = self['RainRateHi'] / 100
         '''
         self['WindHiDir'] = int(self['WindHiDir'] * 22.5)
         self['WindAvgDir'] = int(self['WindAvgDir'] * 22.5)

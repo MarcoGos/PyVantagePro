@@ -1,6 +1,13 @@
 Changelog
 ---------
 
+Version 0.3.4
+~~~~~~~~~~~~~
+
+Released on 2023-11-05
+
+- Fixed UV index and rain rate in archive data
+
 Version 0.3.3
 ~~~~~~~~~~~~~
 
@@ -8,7 +15,6 @@ Released on 2023-10-31
 
 - Fixed UV index in current data (was 10 times too high)
 - Fixed value when TempOut was below 0°F
-- Fixed UV index and rain rate in archive data
 
 Version 0.3.2
 ~~~~~~~~~~~~~

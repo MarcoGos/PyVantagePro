@@ -20,7 +20,8 @@ from .utils import (cached_property, retry, bytes_to_hex,
 
 from .parser import (LoopDataParserRevB, DmpHeaderParser, DmpPageParser,
                      ArchiveDataParserRevB, VantageProCRC, pack_datetime,
-                     unpack_datetime, pack_dmp_date_time)
+                     unpack_datetime, pack_dmp_date_time,
+                     HighLowParserRevB)
 
 
 class NoDeviceException(Exception):
@@ -171,6 +172,16 @@ class VantagePro2(object):
         current_data = self.link.read(99)
         if self.RevB:
             return LoopDataParserRevB(current_data, datetime.now())
+        else:
+            raise NotImplementedError('Do not support RevB data format')
+
+    def get_hilows(self):
+        '''Returns the hilows data as a `Dict`.'''
+        self.wake_up()
+        self.send("HILOWS", self.ACK)
+        hilows_data = self.link.read(439)
+        if self.RevB:
+            return HighLowParserRevB(hilows_data, datetime.now())
         else:
             raise NotImplementedError('Do not support RevB data format')
 

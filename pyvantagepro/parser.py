@@ -261,14 +261,119 @@ class LoopDataParserRevB(DataParser):
         # format: HHMM, and space padded on the left.ex: "601" is 6:01 AM
         return "%02d:%02d" % divmod(time, 100)  # covert to "06:01"
 
+class HighLowParserRevB(DataParser):
+    '''Parse data returned by the 'HILOWS' command. It contains all of the
+    real-time data that can be read from the Davis VantagePro2.'''
+    # Loop data format (RevB)
+    HILOWS_FORMAT = (
+        ('BaroLoDay', 'H'), ('BaroHiDay', 'H'),
+        ('BaroLoMonth', 'H'), ('BaroHiMonth', 'H'),
+        ('BaroLoYear', 'H'), ('BaroHiYear', 'H'),
+        ('BaroLoTime', 'H'), ('BaroHiTime', 'H'),
+
+        ('WindHiDay', 'B'), ('WindHiTime', 'H'),
+        ('WindHiMonth', 'B'), ('WindHiYear', 'B'),
+
+        ('InTempHiDay', 'H'), ('InTempLoDay', 'H'),
+        ('InTempHiTime', 'H'), ('InTempLoTime', 'H'),
+        ('InTempLoMonth', 'H'), ('InTempHiMonth', 'H'),
+        ('InTempLoYear', 'H'), ('InTempHiYear', 'H'),
+
+        ('InHumHiDay', 'B'), ('InHumLoDay', 'B'),
+        ('InHumHiTime', 'H'), ('InHumLoTime', 'H'),
+        ('InHumHiMonth', 'B'), ('InHumLoMonth', 'B'),
+        ('InHumHiYear', 'B'), ('InHumLoYear', 'B'),
+
+        ('TempLoDay', 'h'), ('TempHiDay', 'h'),
+        ('TempLoTime', 'H'), ('TempHiTime', 'H'),
+        ('TempHiMonth', 'h'), ('TempLoMonth', 'h'),
+        ('TempHiYear', 'h'), ('TempLoYear', 'h'),
+
+        ('DewLoDay', 'h'), ('DewHiDay', 'h'),
+        ('DewLoTime', 'H'), ('DewHiTime', 'H'),
+        ('DewHiMonth', 'h'), ('DewLoMonth', 'h'),
+        ('DewHiYear', 'h'), ('DewLoYear', 'h'),
+
+        ('ChillLoDay', 'h'), ('ChillLoTime', 'H'),
+        ('ChillLoMonth', 'h'), ('ChillLoYear', 'h'),
+
+        ('HeatHiDay', 'h'), ('HeatHiTime', 'H'),
+        ('HeatHiMonth', 'h'), ('HeatHiYear', 'h'),
+
+        ('THSWHiDay', 'h'), ('THSWHiTime', 'H'),
+        ('THSWHiMonth', 'h'), ('THSWHiYear', 'h'),
+
+        ('SolarHiDay', 'H'), ('SolarHiTime', 'H'),
+        ('SolarHiMonth', 'H'), ('SolarHiYear', 'H'),
+
+        ('UVHiDay', 'B'), ('UVHiTime', 'H'),
+        ('UVHiMonth', 'B'), ('UVHiYear', 'B'),
+
+        ('RainHiDay', 'H'), ('RainHiTime', 'H'),
+        ('RainHiHour', 'H'), ('RainHiMonth', 'H'),
+        ('RainHiYear', 'H'),
+
+        ('ExtraLeaf', '150s'), ('ExtraTemps', '80s'),
+        ('SoilMoist', '40s'), ('LeafWet', '40s'),
+        ('Unknown', 'H')
+    )
+
+    def __init__(self, data, dtime):
+        super(HighLowParserRevB, self).__init__(data, self.HILOWS_FORMAT)
+        self['Datetime'] = dtime
+        self['BaroLoDay'] /= 1000
+        self['BaroHiDay'] /= 1000
+        self['BaroLoMonth'] /= 1000
+        self['BaroHiMonth'] /= 1000
+        self['BaroLoYear'] /= 1000
+        self['BaroHiYear'] /= 1000
+
+        self['InTempHiDay'] /= 10
+        self['InTempLoDay'] /= 10
+        self['InTempLoMonth'] /= 10
+        self['InTempHiMonth'] /= 10
+        self['InTempLoYear'] /= 10
+        self['InTempHiYear'] /= 10
+
+        self['TempLoDay'] /= 10 
+        self['TempHiDay'] /= 10
+        self['TempHiMonth'] /= 10
+        self['TempLoMonth'] /= 10
+        self['TempHiYear'] /= 10 
+        self['TempLoYear'] /= 10
+
+        self['DewLoDay'] /= 10
+        self['DewHiDay'] /= 10
+        self['DewHiMonth'] /= 10
+        self['DewLoMonth'] /= 10
+        self['DewHiYear'] /= 10
+        self['DewLoYear'] /= 10
+
+        self['ChillLoDay'] /= 10
+        self['ChillLoMonth'] /= 10
+        self['ChillLoYear'] /= 10
+
+        self['HeatHiDay'] /= 10
+        self['HeatHiTime'] /= 10
+        self['HeatHiMonth'] /= 10
+        self['HeatHiYear'] /= 10
+
+        self['UVHiDay'] /= 10
+        self['UVHiMonth'] /= 10
+        self['UVHiYear'] /= 10
+
+        self['RainHiDay'] /= 100
+        self['RainHiHour'] /= 100
+        self['RainHiMonth'] /= 100
+        self['RainHiYear'] /= 100
 
 class ArchiveDataParserRevB(DataParser):
     '''Parse data returned by the 'LOOP' command. It contains all of the
     real-time data that can be read from the Davis VantagePro2.'''
 
     ARCHIVE_FORMAT = (
-        ('DateStamp',      'H'), ('TimeStamp',   'H'), ('TempOut',      'H'),
-        ('TempOutHi',      'H'), ('TempOutLow',  'H'), ('RainRate',     'H'),
+        ('DateStamp',      'H'), ('TimeStamp',   'H'), ('TempOut',      'h'),
+        ('TempOutHi',      'h'), ('TempOutLow',  'h'), ('RainRate',     'H'),
         ('RainRateHi',     'H'), ('Barometer',   'H'), ('SolarRad',     'H'),
         ('WindSamps',      'H'), ('TempIn',      'H'), ('HumIn',        'B'),
         ('HumOut',         'B'), ('WindAvg',     'B'), ('WindHi',       'B'),

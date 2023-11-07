@@ -1,6 +1,20 @@
 Changelog
 ---------
 
+Version 0.3.6
+~~~~~~~~~~~~~
+
+Released on 2023-11-05
+
+- Fixed wind chill, dewpoint and heat index
+
+Version 0.3.5
+~~~~~~~~~~~~~
+
+Released on 2023-11-05
+
+- Added high/low values readout
+
 Version 0.3.4
 ~~~~~~~~~~~~~
 

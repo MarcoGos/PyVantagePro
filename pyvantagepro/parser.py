@@ -342,22 +342,6 @@ class HighLowParserRevB(DataParser):
         self['TempHiYear'] /= 10 
         self['TempLoYear'] /= 10
 
-        self['DewLoDay'] /= 10
-        self['DewHiDay'] /= 10
-        self['DewHiMonth'] /= 10
-        self['DewLoMonth'] /= 10
-        self['DewHiYear'] /= 10
-        self['DewLoYear'] /= 10
-
-        self['ChillLoDay'] /= 10
-        self['ChillLoMonth'] /= 10
-        self['ChillLoYear'] /= 10
-
-        self['HeatHiDay'] /= 10
-        self['HeatHiTime'] /= 10
-        self['HeatHiMonth'] /= 10
-        self['HeatHiYear'] /= 10
-
         self['UVHiDay'] /= 10
         self['UVHiMonth'] /= 10
         self['UVHiYear'] /= 10

@@ -327,6 +327,10 @@ class HighLowParserRevB(DataParser):
         self['BaroHiMonth'] /= 1000
         self['BaroLoYear'] /= 1000
         self['BaroHiYear'] /= 1000
+        self['BaroLoTime'] = self.unpack_time(self['BaroLoTime'])
+        self['BaroHiTime'] = self.unpack_time(self['BaroHiTime'])
+
+        self['WindHiTime'] = self.unpack_time(self['WindHiTime'])
 
         self['InTempHiDay'] /= 10
         self['InTempLoDay'] /= 10
@@ -335,12 +339,17 @@ class HighLowParserRevB(DataParser):
         self['InTempLoYear'] /= 10
         self['InTempHiYear'] /= 10
 
-        self['TempLoDay'] /= 10 
+        self['TempLoDay'] /= 10
         self['TempHiDay'] /= 10
         self['TempHiMonth'] /= 10
         self['TempLoMonth'] /= 10
-        self['TempHiYear'] /= 10 
+        self['TempHiYear'] /= 10
         self['TempLoYear'] /= 10
+        self['TempLoTime'] = self.unpack_time(self['TempLoTime'])
+        self['TempHiTime'] = self.unpack_time(self['TempHiTime'])
+
+        self['DewLoTime'] = self.unpack_time(self['DewLoTime'])
+        self['DewHiTime'] = self.unpack_time(self['DewHiTime'])
 
         self['UVHiDay'] /= 10
         self['UVHiMonth'] /= 10
@@ -350,6 +359,11 @@ class HighLowParserRevB(DataParser):
         self['RainHiHour'] /= 100
         self['RainHiMonth'] /= 100
         self['RainHiYear'] /= 100
+
+    def unpack_time(self, time):
+        '''Given a packed time field, unpack and return "HH:MM" string.'''
+        # format: HHMM, and space padded on the left.ex: "601" is 6:01 AM
+        return "%02d:%02d" % divmod(time, 100)  # covert to "06:01"
 
 class ArchiveDataParserRevB(DataParser):
     '''Parse data returned by the 'LOOP' command. It contains all of the

@@ -351,11 +351,15 @@ class HighLowParserRevB(DataParser):
         self['DewLoTime'] = self.unpack_time(self['DewLoTime'])
         self['DewHiTime'] = self.unpack_time(self['DewHiTime'])
 
+        self['SolarHiTime'] = self.unpack_time(self['SolarHiTime'])
+
         self['UVHiDay'] /= 10
+        self['UVHiTime'] = self.unpack_time(self['UVHiTime'])
         self['UVHiMonth'] /= 10
         self['UVHiYear'] /= 10
 
         self['RainHiDay'] /= 100
+        self['RainHiTime'] = self.unpack_time(self['RainHiTime'])
         self['RainHiHour'] /= 100
         self['RainHiMonth'] /= 100
         self['RainHiYear'] /= 100

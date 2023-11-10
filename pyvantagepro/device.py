@@ -254,7 +254,7 @@ class VantagePro2(object):
                 # verify that record has valid data, and store
                 r_time = record['Datetime']
                 if r_time is None:
-                    LOGGER.error('Invalid record detected')
+                    LOGGER.info('Invalid record detected')
                     finish = True
                     break
                 elif r_time <= stop_date:
@@ -267,7 +267,7 @@ class VantagePro2(object):
                         not_in_range = True
                         LOGGER.info('The record is not in the datetime range')
                 else:
-                    LOGGER.error('Invalid record detected')
+                    LOGGER.info('Invalid record detected')
                     finish = True
                     break
                 r_index += 1

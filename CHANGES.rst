@@ -1,6 +1,13 @@
 Changelog
 ---------
 
+Version 0.3.8
+~~~~~~~~~~~~~
+
+Released on 2023-11-10
+
+- Added high/low values
+
 Version 0.3.6
 ~~~~~~~~~~~~~
 

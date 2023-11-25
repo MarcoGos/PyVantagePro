@@ -52,8 +52,8 @@ setup(
     long_description=README + '\n\n' + CHANGES,
     author='Salem Harrache',
     author_email='salem.harrache@gmail.com',
-    maintainer='Lionel Darras',
-    maintainer_email='Lionel.Darras@obs.ujf-grenoble.fr',
+    maintainer='Marco Gosselink',
+    maintainer_email='pypi@famgosselink.nl',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Science/Research',

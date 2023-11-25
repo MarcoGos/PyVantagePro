@@ -47,6 +47,7 @@ Features
 
 * Collecting real-time data as a python dictionary
 * Collecting archives as a list of dictionaries
+* Collecting high/low values as a python dictionary
 * Collecting data in a CSV file
 * Updating station time
 * Getting some information about the station, such as date and firmware version.
@@ -60,13 +61,9 @@ Installation
 
 You can install, upgrade, uninstall PyVantagePro with these commands::
 
-  $ pip install pyvantagepro
-  $ pip install --upgrade pyvantagepro
-  $ pip uninstall pyvantagepro
-
-Or if you don't have pip::
-
-  $ easy_install pyvantagepro
+  $ pip install PyVantagePro-MarcoGos
+  $ pip install --upgrade PyVantagePro-MarcoGos
+  $ pip uninstall PyVantagePro-MarcoGos
 
 
 Documentation

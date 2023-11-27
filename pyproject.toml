@@ -1,9 +1,10 @@
 [project]
 name = "PyVantagePro_MarcoGos"
-version = "0.3.9"
+version = "0.3.11"
 authors = [
   { name="Marco Gosselink", email="pypi@famgosselink.nl" },
 ]
+dependencies = [ "pylink==0.3.3" ]
 description = "Extended PyVantagePro library"
 license = {file = "COPYING"}
 readme = "README.rst"

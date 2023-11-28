@@ -1,6 +1,13 @@
 Changelog
 ---------
 
+Version 0.3.12
+~~~~~~~~~~~~~
+
+Released on 2023-11-28
+
+- Removed old setup files
+
 Version 0.3.8
 ~~~~~~~~~~~~~
 

@@ -18,7 +18,7 @@ from array import array
 from .compat import bytes
 from .logger import LOGGER
 from .utils import (cached_property, bytes_to_hex, Dict, bytes_to_binary,
-                    binary_to_int)
+                    binary_to_int, word_to_binary)
 
 
 class VantageProCRC(object):
@@ -155,7 +155,7 @@ class LoopDataParserRevB(DataParser):
         self['RainStorm'] = self['RainStorm'] / 100
         self['UV'] = self['UV'] / 10
         # Given a packed storm date field, unpack and return date
-        self['StormStartDate'] = self.unpack_storm_date()
+        self['StormStartDate'] = self.unpack_storm_date(self['StormStartDate'])
         # rain totals
         self['RainDay'] = self['RainDay'] / 100
         self['RainMonth'] = self['RainMonth'] / 100
@@ -248,13 +248,16 @@ class LoopDataParserRevB(DataParser):
         self.tuple_to_dict("LeafWetness")
         self.tuple_to_dict("SoilMoist")
 
-    def unpack_storm_date(self):
-        '''Given a packed storm date field, unpack and return date.'''
-        date = bytes_to_binary(self.raw_bytes[48:50])
-        year = binary_to_int(date, 0, 7) + 2000
-        day = binary_to_int(date, 7, 12)
-        month = binary_to_int(date, 12, 16)
-        return "%s-%s-%s" % (year, month, day)
+    def unpack_storm_date(self, date):
+        '''Given a packed storm date field, unpack and return date.'''    
+        b = word_to_binary(date)
+
+        year = binary_to_int(b, 0, 7) + 2000
+        month = binary_to_int(b, 12, 16)
+        day = binary_to_int(b, 7, 12)
+
+        return "%d-%0.2d-%0.2d" % (year, month, day)
+
 
     def unpack_time(self, time):
         '''Given a packed time field, unpack and return "HH:MM" string.'''

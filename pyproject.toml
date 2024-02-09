@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "PyVantagePro_MarcoGos"
-version = "0.3.12"
+version = "0.3.13"
 authors = [
   { name="Salem Harrache", email="salem.harrache@gmail.com" },
   { name="Marco Gosselink", email="pypi@famgosselink.nl" },

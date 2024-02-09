@@ -124,6 +124,14 @@ def byte_to_binary(byte):
     '''
     return ''.join(str((byte & (1 << i)) and 1) for i in reversed(range(8)))
 
+def word_to_binary(word):
+    '''Convert byte to binary string representation.
+    E.g.
+    >>> byte_to_binary("\x4A")
+    '0000000001001010'
+    '''
+    return ''.join(str((word & (1 << i)) and 1) for i in reversed(range(16)))
+
 
 def bytes_to_binary(values):
     '''Convert bytes to binary string representation.

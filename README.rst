@@ -54,6 +54,8 @@ Features
 * Various types of connections are supported
 * Comes with a command-line script
 * Compatible with Python 2.6+ and 3.x
+* Configure Archive Period
+* Set Yearly Rain
 
 
 Installation

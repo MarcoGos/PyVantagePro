@@ -202,6 +202,11 @@ class VantagePro2(object):
                 dates.append(item['Datetime'])
         return archives.sorted_by('Datetime')
 
+    def set_yearly_rain(self, rain_clicks: int) -> None:
+        '''Set yearly rain in rain clicks'''
+        self.wake_up()
+        self.send(f"PUTRAIN {rain_clicks}", self.ACK)
+
     def _get_archives_generator(self, start_date=None, stop_date=None):
         '''Get archive records generator until `start_date` and `stop_date`.'''
         self.wake_up()

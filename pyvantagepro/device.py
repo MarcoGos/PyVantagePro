@@ -210,7 +210,7 @@ class VantagePro2(object):
     def set_archive_period(self, archive_period: int) -> None:
         '''Set archive period. WARNING: All stored archive data will be erased!!!'''
         self.wake_up()
-        self.send(f"SETPER {archive_period}", self.ACK)
+        self.send(f"SETPER {archive_period}", self.OK)
 
     def _get_archives_generator(self, start_date=None, stop_date=None):
         '''Get archive records generator until `start_date` and `stop_date`.'''

@@ -13,5 +13,5 @@
 from .logger import LOGGER, active_logger
 from .device import VantagePro2
 
-VERSION = '0.3.15'
+VERSION = '0.3.16'
 __version__ = VERSION

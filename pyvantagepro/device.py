@@ -179,7 +179,7 @@ class VantagePro2(object):
         '''Returns the hilows data as a `Dict`.'''
         self.wake_up()
         self.send("HILOWS", self.ACK)
-        hilows_data = self.link.read(439)
+        hilows_data = self.link.read(438)
         if self.RevB:
             return HighLowParserRevB(hilows_data, datetime.now())
         else:

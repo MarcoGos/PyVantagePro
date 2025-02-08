@@ -318,7 +318,7 @@ class HighLowParserRevB(DataParser):
 
         ('ExtraLeaf', '150s'), ('ExtraTemps', '80s'),
         ('SoilMoist', '40s'), ('LeafWet', '40s'),
-        ('Unknown', 'H')
+        ('CRC', 'H')
     )
 
     def __init__(self, data, dtime):

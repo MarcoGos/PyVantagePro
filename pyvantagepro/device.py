@@ -152,6 +152,12 @@ class VantagePro2(object):
             LOGGER.error(msg)
             raise BadAckException()
 
+    def write_to_eeprom(self, hex_address, size, data):
+        '''Writes to EEPROM the `size` number of bytes starting at the
+        `hex_address` with the given `data`. `data` needs to be bytes.'''
+        self.send("EEBWR %s %.2d\n" % (hex_address, size), self.ACK)
+        self.send(data)
+
     def gettime(self):
         '''Returns the current datetime of the console.'''
         self.wake_up()
@@ -295,6 +301,11 @@ class VantagePro2(object):
                     LOGGER.info('Start downloading next page')
                 self.link.write(self.ACK)
         LOGGER.info('Pages Downloading process was finished')
+
+    def newsetup(self, archive_period: int) -> None:
+        '''Re-initializes the console after making certain configuration changes'''
+        self.wake_up()
+        self.send("NEWSETUP", self.ACK)
 
     @cached_property
     def archive_period(self):

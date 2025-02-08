@@ -308,6 +308,12 @@ class VantagePro2(object):
         self.wake_up()
         self.send("NEWSETUP", self.ACK)
 
+    def get_rain_collector(self) -> int:
+        '''Get rainc ollector type. 0x00 = 0.01", 0x10 = 0.2mm, 0x20 = 0.1mm'''
+        setup_bits = struct.unpack(b"B", self.read_from_eeprom("2B", 1))[0]  # type: ignore
+        rain_type = setup_bits & 0x30
+        return rain_type
+
     def set_rain_collector(self, type) -> None:
         '''Set rain collector type. 0x00 = 0.01", 0x10 = 0.2mm, 0x20 = 0.1mm'''
         setup_bits = struct.unpack(b"B", self.read_from_eeprom("2B", 1))[0]  # type: ignore

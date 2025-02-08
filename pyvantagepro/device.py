@@ -302,7 +302,7 @@ class VantagePro2(object):
                 self.link.write(self.ACK)
         LOGGER.info('Pages Downloading process was finished')
 
-    def newsetup(self, archive_period: int) -> None:
+    def newsetup(self) -> None:
         '''Re-initializes the console after making certain configuration changes'''
         self.wake_up()
         self.send("NEWSETUP", self.ACK)

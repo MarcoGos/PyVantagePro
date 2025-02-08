@@ -56,6 +56,8 @@ Features
 * Compatible with Python 2.6+ and 3.x
 * Configure Archive Period
 * Set Yearly Rain
+* Set Rail Collector
+* Write to EEPROM
 
 
 Installation

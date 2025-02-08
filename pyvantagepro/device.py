@@ -154,9 +154,10 @@ class VantagePro2(object):
 
     def write_to_eeprom(self, hex_address, size, data):
         '''Writes to EEPROM the `size` number of bytes starting at the
-        `hex_address` with the given `data`. `data` needs to be bytes.'''
+        `hex_address` with the given `data`. `data` needs to be bytes. CRC will be automatically added.'''
         self.send("EEBWR %s %.2d\n" % (hex_address, size), self.ACK)
-        self.send(data)
+        data_with_crc = VantageProCRC(data).data_with_checksum
+        self.send(data_with_crc, self.ACK)
 
     def gettime(self):
         '''Returns the current datetime of the console.'''
@@ -306,6 +307,14 @@ class VantagePro2(object):
         '''Re-initializes the console after making certain configuration changes'''
         self.wake_up()
         self.send("NEWSETUP", self.ACK)
+
+    def set_rain_collector(self, type) -> None:
+        '''Set rain collector type. 0x00 = 0.01", 0x10 = 0.2mm, 0x20 = 0.1mm'''
+        setup_bits = struct.unpack(b"B", self.read_from_eeprom("2B", 1))[0]  # type: ignore
+        setup_bits = (setup_bits & 0xCF) | type
+        data = struct.pack(b'>B', setup_bits)
+        self.write_to_eeprom("2B", 1, data)
+        self.newsetup()
 
     @cached_property
     def archive_period(self):

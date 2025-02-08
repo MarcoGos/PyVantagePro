@@ -9,6 +9,9 @@
     :license: GNU GPL v3.
 
 '''
+# Make sure the logger is configured early:
+from .logger import LOGGER, active_logger
+from .device import VantagePro2
 
-VERSION = '0.3.20'
+VERSION = '0.3.21'
 __version__ = VERSION

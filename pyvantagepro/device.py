@@ -142,7 +142,7 @@ class VantagePro2(object):
         ack = self.link.read(len(self.ACK))
         if self.ACK == ack:
             LOGGER.info("Check ACK: OK (%s)" % (repr(ack)))
-            data = self.link.read(size + 2)  # 2 bytes for CRC
+            data = self.link.read(size + 2, binary=True)  # 2 bytes for CRC
             if VantageProCRC(data).check():
                 return data[:-2]
             else:
@@ -163,7 +163,7 @@ class VantagePro2(object):
         '''Returns the current datetime of the console.'''
         self.wake_up()
         self.send("GETTIME", self.ACK)
-        data = self.link.read(8)
+        data = self.link.read(8, binary=True)
         return unpack_datetime(data)
 
     def settime(self, dtime):

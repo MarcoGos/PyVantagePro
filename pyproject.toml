@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "PyVantagePro_MarcoGos"
-version = "0.3.21"
+version = "0.3.22"
 authors = [
   { name="Salem Harrache", email="salem.harrache@gmail.com" },
   { name="Marco Gosselink", email="pypi@famgosselink.nl" },
 ]
 dependencies = [ 
-  "pylink>=0.3.3",
+  "PyLink-MarcoGos>=0.3.4",
   "progressbar-latest"
 ]
 description = "Communication tools for the Davis VantagePro2 devices"

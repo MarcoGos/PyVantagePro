@@ -12,7 +12,7 @@
 from __future__ import division, unicode_literals
 import struct
 from datetime import datetime, timedelta
-from pylink import link_from_url, SerialLink
+from .link import link_from_url, SerialLink
 
 from .logger import LOGGER
 from .utils import (cached_property, retry, bytes_to_hex,

@@ -90,3 +90,11 @@ elif is_py3:
     bytes = bytes
     stdout = sys.stdout.buffer
     xrange = range
+
+
+def format_string(s, encoding='utf-8'):
+    if isinstance(s, str):
+        return s.encode(encoding)
+    if isinstance(s, basestring):
+        return s
+    return str(s)

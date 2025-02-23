@@ -95,6 +95,6 @@ elif is_py3:
 def format_string(s, encoding='utf-8'):
     if isinstance(s, str):
         return s.encode(encoding)
-    if isinstance(s, basestring):
+    if isinstance(s, bytes):
         return s
     return str(s)

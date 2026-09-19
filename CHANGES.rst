@@ -1,6 +1,13 @@
 Changelog
 ---------
 
+Version 0.3.29
+~~~~~~~~~~~~~
+
+Released on 2024-06-05
+
+- Added binary read mode for dump pages
+
 Version 0.3.28
 ~~~~~~~~~~~~~
 
